@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nautical Dream - Creative Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo::before {
+            content: "⚓";
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ecf0f1;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+
+        main {
+            padding: 40px 0;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .project-content p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-detail {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-detail h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .project-detail .meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .meta-value {
+            color: #7f8c8d;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .back-btn:hover {
+            background: #2980b9;
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-content h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .contact-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contact-item {
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-detail, .about-content, .contact-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" onclick="showPage('home')">Nautical Dream</a>
+                <nav>
+                    <ul>
+                        <li><a href="#" onclick="showPage('home')" class="nav-link active">Home</a></li>
+                        <li><a href="#" onclick="showPage('projects')" class="nav-link">Projects</a></li>
+                        <li><a href="#" onclick="showPage('about')" class="nav-link">About</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>Welcome to Nautical Dream</h1>
+                <p>Exploring the depths of creativity through innovative projects and thoughtful design. Dive into a world where imagination meets technical excellence.</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card" onclick="showProject('ocean-explorer')">
+                    <div class="project-image">🌊</div>
+                    <div class="project-content">
+                        <h3>Ocean Explorer</h3>
+                        <p>An interactive web application for exploring marine ecosystems and ocean data visualization.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">WebGL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('maritime-tracker')">
+                    <div class="project-image">🚢</div>
+                    <div class="project-content">
+                        <h3>Maritime Tracker</h3>
+                        <p>Real-time ship tracking system with weather integration and route optimization features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Socket.io</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('tidal-patterns')">
+                    <div class="project-image">🌙</div>
+                    <div class="project-content">
+                        <h3>Tidal Patterns</h3>
+                        <p>Data visualization tool for analyzing tidal patterns and their environmental impact.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('lighthouse-network')">
+                    <div class="project-image">🗼</div>
+                    <div class="project-content">
+                        <h3>Lighthouse Network</h3>
+                        <p>A distributed communication system inspired by historical lighthouse networks.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Go</span>
+                            <span class="tech-tag">gRPC</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Page -->
+        <div id="projects" class="page">
+            <div class="hero">
+                <h1>All Projects</h1>
+                <p>A comprehensive collection of creative and technical endeavors</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card" onclick="showProject('ocean-explorer')">
+                    <div class="project-image">🌊</div>
+                    <div class="project-content">
+                        <h3>Ocean Explorer</h3>
+                        <p>An interactive web application for exploring marine ecosystems and ocean data visualization.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">WebGL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('maritime-tracker')">
+                    <div class="project-image">🚢</div>
+                    <div class="project-content">
+                        <h3>Maritime Tracker</h3>
+                        <p>Real-time ship tracking system with weather integration and route optimization features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Socket.io</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('tidal-patterns')">
+                    <div class="project-image">🌙</div>
+                    <div class="project-content">
+                        <h3>Tidal Patterns</h3>
+                        <p>Data visualization tool for analyzing tidal patterns and their environmental impact.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('lighthouse-network')">
+                    <div class="project-image">🗼</div>
+                    <div class="project-content">
+                        <h3>Lighthouse Network</h3>
+                        <p>A distributed communication system inspired by historical lighthouse networks.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Go</span>
+                            <span class="tech-tag">gRPC</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('coral-reef-monitor')">
+                    <div class="project-image">🐠</div>
+                    <div class="project-content">
+                        <h3>Coral Reef Monitor</h3>
+                        <p>Environmental monitoring system for coral reef health assessment using IoT sensors.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">AWS IoT</span>
+                            <span class="tech-tag">React</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('nautical-charts')">
+                    <div class="project-image">🗺️</div>
+                    <div class="project-content">
+                        <h3>Digital Nautical Charts</h3>
+                        <p>Modern interpretation of nautical charts with interactive features and real-time updates.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Leaflet</span>
+                            <span class="tech-tag">PostGIS</span>
+                            <span class="tech-tag">Express</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <div class="about-content">
+                <h2>About Nautical Dream</h2>
+                <p>Welcome to Nautical Dream, where the vast expanse of the ocean meets the limitless possibilities of technology. Our passion lies in creating innovative solutions that bridge the gap between maritime traditions and modern digital experiences.</p>
+                
+                <p>Founded with a deep appreciation for the sea's timeless wisdom and nature's intricate patterns, we specialize in developing applications and systems that honor the nautical world while embracing cutting-edge technology. From data visualization that captures the rhythm of tides to tracking systems that follow the paths of vessels across endless waters, every project is crafted with attention to detail and genuine respect for the marine environment.</p>
+                
+                <p>Our approach combines technical expertise with creative vision, ensuring that each solution not only functions flawlessly but also tells a story. We believe that the best technologies are those that connect us more deeply with the world around us, rather than distancing us from it.</p>
+
+                <div class="skills">
+                    <div class="skill-category">
+                        <h4>Frontend Development</h4>
+                        <p>React, Vue.js, D3.js, WebGL, Three.js</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Backend Development</h4>
+                        <p>Node.js, Python, Go, PostgreSQL, MongoDB</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Data & Visualization</h4>
+                        <p>Pandas, Matplotlib, Leaflet, GIS Systems</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Maritime Technology</h4>
+                        <p>AIS Systems, Weather APIs, IoT Sensors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <div class="contact-content">
+                <h2>Get In Touch</h2>
+                <p>Ready to embark on a new project? Let's chart a course together.</p>
+                
+                <div class="contact-item">
+                    <strong>Email:</strong><br>
+                    <a href="mailto:hello@nauticaldream.me">hello@nauticaldream.me</a>
+                </div>
+                
+                <div class="contact-item">
+                    <strong>Location:</strong><br>
+                    Available for remote collaboration worldwide
+                </div>
+                
+                <div class="contact-item">
+                    <strong>Response Time:</strong><br>
+                    Within 24 hours during business days
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Detail Pages -->
+        <div id="ocean-explorer" class="page project-detail">
+            <button class="back-btn" onclick="showPage('projects')">← Back to Projects</button>
+            <h2>Ocean Explorer</h2>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">6 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Full-stack Developer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Technologies</span>
+                    <span class="meta-value">React, D3.js, WebGL</span>
+                </div>
+            </div>
+            
+            <p>Ocean Explorer is an immersive web application that brings the mysteries of the deep sea to life through interactive data visualization and educational content. Users can dive into different ocean layers, explore marine ecosystems, and understand the complex relationships that exist beneath the waves.</p>
+            
+            <h3>Key Features</h3>
+            <p>The application features a three-dimensional ocean environment where users can navigate through different depth levels, each revealing unique species and environmental data. Real-time oceanographic data integration provides current information about temperature, salinity, and marine life distributions.</p>
+            
+            <h3>Technical Challenges</h3>
+            <p>One of the main challenges was optimizing WebGL rendering for complex underwater scenes while maintaining smooth performance across different devices. We implemented level-of-detail systems and efficient data streaming to ensure the experience remains fluid regardless of the user's hardware capabilities.</p>
+            
+            <h3>Impact</h3>
+            <p>Ocean Explorer has been used by marine biology educators and has reached over 50,000 students worldwide, helping them better understand ocean ecosystems through interactive exploration rather than traditional static materials.</p>
+        </div>
+
+        <div id="maritime-tracker" class="page project-detail">
+            <button class="back-btn" onclick="showPage('projects')">← Back to Projects</button>
+            <h2>Maritime Tracker</h2>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">8 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Backend Lead</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Technologies</span>
+                    <span class="meta-value">Node.js, MongoDB, Socket.io</span>
+                </div>
+            </div>
+            
+            <p>Maritime Tracker is a comprehensive ship tracking and fleet management system designed for maritime companies to monitor their vessels in real-time. The system integrates AIS data, weather information, and route optimization algorithms to provide complete situational awareness.</p>
+            
+            <h3>Core Functionality</h3>
+            <p>The platform processes thousands of AIS messages per minute, providing real-time vessel positions, speeds, and headings. Weather integration allows for route adjustments based on current and forecasted conditions, while the optimization engine suggests fuel-efficient paths.</p>
+            
+            <h3>Architecture</h3>
+            <p>Built on a microservices architecture, the system can scale horizontally to handle increasing data loads. WebSocket connections ensure real-time updates reach clients instantly, while a robust caching layer maintains performance during peak usage periods.</p>
+            
+            <h3>Results</h3>
+            <p>Maritime Tracker has helped shipping companies reduce fuel consumption by an average of 12% through optimized routing and has improved safety through enhanced weather awareness and collision avoidance features.</p>
+        </div>
+
+        <div id="tidal-patterns" class="page project-detail">
+            <button class="back-btn" onclick="showPage('projects')">← Back to Projects</button>
+            <h2>Tidal Patterns</h2>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">4 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Data Scientist</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Technologies</span>
+                    <span class="meta-value">Python, Matplotlib, Pandas</span>
+                </div>
+            </div>
+            
+            <p>Tidal Patterns is a sophisticated data analysis and visualization tool that helps researchers and coastal planners understand tidal behavior and its environmental implications. The application processes decades of tidal data to identify patterns and predict future trends.</p>
+            
+            <h3>Data Analysis</h3>
+            <p>The system analyzes historical tidal measurements from hundreds of monitoring stations worldwide, identifying cyclical patterns, anomalies, and long-term trends. Machine learning algorithms help predict tidal behavior under various environmental conditions.</p>
+            
+            <h3>Visualization Capabilities</h3>
+            <p>Interactive charts and maps allow users to explore tidal data across different time scales and geographic regions. The visualization adapts to show everything from hourly fluctuations to multi-decade trends, making complex data accessible to both experts and the general public.</p>
+            
+            <h3>Environmental Impact</h3>
+            <p>Tidal Patterns has been instrumental in coastal planning projects, helping predict the effects of sea level rise and extreme weather events on tidal behavior. The insights generated have informed infrastructure decisions in vulnerable coastal areas.</p>
+        </div>
+
+        <div id="lighthouse-network" class="page project-detail">
+            <button class="back-btn" onclick="showPage('projects')">← Back to Projects</button>
+            <h2>Lighthouse Network</h2>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">10 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-label">System Architect</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Technologies</span>
+                    <span class="meta-value">Go, gRPC, Docker</span>
+                </div>
+            </div>
+            
+            <p>Lighthouse Network is a distributed communication system inspired by the historical networks of lighthouses that guided ships safely to harbor. This modern interpretation creates resilient communication channels that can operate independently or as part of a larger network.</p>
+            
+            <h3>Distributed Architecture</h3>
+            <p>Each node in the network operates autonomously while maintaining connections with neighboring nodes. This creates a mesh topology that can adapt to failures and route messages through alternative paths, ensuring reliable communication even in challenging conditions.</p>
+            
+            <h3>Protocol Design</h3>
+            <p>The custom protocol balances efficiency with reliability, using gRPC for high-performance inter-node communication while implementing fallback mechanisms for degraded network conditions. Messages are automatically encrypted and authenticated.</p>
+            
+            <h3>Applications</h3>
+            <p>Lighthouse Network has been deployed in remote maritime operations where traditional communication infrastructure is unreliable. The system has proven particularly valuable for coordinating search and rescue operations in challenging environments.</p>
+        </div>
+
+        <div id="coral-reef-monitor" class="page project-detail">
+            <button class="back-btn" onclick="showPage('projects')">← Back to Projects</button>
+            <h2>Coral Reef Monitor</h2>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">12 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">IoT Developer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Technologies</span>
+                    <span class="meta-value">Arduino, AWS IoT, React</span>
+                </div>
+            </div>
+            
+            <p>Coral Reef Monitor is an environmental monitoring system that uses underwater IoT sensors to track coral reef health in real-time. The system provides early warning for bleaching events and helps researchers understand the factors affecting reef ecosystems.</p>
+            
+            <h3>Sensor Network</h3>
+            <p>Waterproof sensor nodes measure temperature, pH, dissolved oxygen, and turbidity at multiple depths. The sensors are designed to operate for months on battery power while transmitting data via underwater acoustic modems to surface buoys.</p>
+            
+            <h3>Data Processing</h3>
+            <p>Cloud-based analytics process sensor data to identify patterns and anomalies. Machine learning models predict bleaching events based on environmental conditions, allowing for proactive conservation measures.</p>
+            
+            <h3>Conservation Impact</h3>
+            <p>The system has been deployed at several reef sites and has successfully predicted three major bleaching events, enabling targeted interventions that reduced coral mortality by an estimated 30% in protected areas.</p>
+        </div>
+
+        <div id="nautical-charts" class="page project-detail">
+            <button class="back-btn" onclick="showPage('projects')">← Back to Projects</button>
+            <h2>Digital Nautical Charts</h2>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">9 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Frontend Specialist</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Technologies</span>
+                    <span class="meta-value">Leaflet, PostGIS, Express</span>
+                </div>
+            </div>
+            
+            <p>Digital Nautical Charts brings traditional maritime navigation into the digital age with interactive charts that combine historical accuracy with modern functionality. The system provides detailed bathymetric data, navigation aids, and real-time hazard information.</p>
+            
+            <h3>Chart Digitization</h3>
+            <p>Historical nautical charts were carefully digitized and georeferenced, preserving important navigation details while adding layers of modern data. The system maintains compatibility with international chart standards while enabling enhanced interactivity.</p>
+            
+            <h3>Real-time Updates</h3>
+            <p>The charts integrate with official Notice to Mariners systems to provide real-time updates about navigation hazards, construction zones, and changing conditions. Users receive automatic notifications when conditions change in their area of interest.</p>
+            
+            <h3>Professional Adoption</h3>
+            <p>Digital Nautical Charts has been adopted by professional mariners and sailing enthusiasts alike, with over 10,000 active users relying on the system for navigation planning and safety information.</p>
+        </div>
+    </main>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate the corresponding nav link
+            const activeLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeLink && activeLink.classList.contains('nav-link')) {
+                activeLink.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update URL hash for direct linking
+            window.location.hash = pageId;
+        }
+
+        function showProject(projectId) {
+            showPage(projectId);
+        }
+
+        // Handle direct navigation via URL hash
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showPage(hash);
+            }
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showPage(hash);
+            } else {
+                showPage('home');
+            }
+        });
+    </script>
+</body>
+</html>
