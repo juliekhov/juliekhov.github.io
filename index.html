@@ -603,65 +603,579 @@
                 <div class="project-card" onclick="showProject('PMP-jeopardy')">
                     <div class="project-image">🚢</div>
                     <div class="project-content">
-                        <h3>PMP Jeopardy Game</h3>
-                        <p>PMP Jeopardy game with question and answer components.</p>
-                        <div class="project-tech">
-                          <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
+                        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMP Jeopardy! - PMBOK 7 Study Game</title>
+    <style>
+        .pmp-jeopardy-container {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: auto;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
 
-                <div class="project-card" onclick="showProject('tidal-patterns')">
-                    <div class="project-image">🌙</div>
-                    <div class="project-content">
-                        <h3>Tidal Patterns</h3>
-                        <p>Data visualization tool for analyzing tidal patterns and their environmental impact.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Matplotlib</span>
-                            <span class="tech-tag">Pandas</span>
-                        </div>
-                    </div>
-                </div>
+        .pmp-jeopardy-container * {
+            box-sizing: border-box;
+        }
 
-                <div class="project-card" onclick="showProject('lighthouse-network')">
-                    <div class="project-image">🗼</div>
-                    <div class="project-content">
-                        <h3>Lighthouse Network</h3>
-                        <p>A distributed communication system inspired by historical lighthouse networks.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Go</span>
-                            <span class="tech-tag">gRPC</span>
-                            <span class="tech-tag">Docker</span>
-                        </div>
-                    </div>
-                </div>
+        .pmp-jeopardy-container .header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #1e3c72;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
 
-                <div class="project-card" onclick="showProject('coral-reef-monitor')">
-                    <div class="project-image">🐠</div>
-                    <div class="project-content">
-                        <h3>Coral Reef Monitor</h3>
-                        <p>Environmental monitoring system for coral reef health assessment using IoT sensors.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Arduino</span>
-                            <span class="tech-tag">AWS IoT</span>
-                            <span class="tech-tag">React</span>
-                        </div>
-                    </div>
-                </div>
+        .pmp-jeopardy-container .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
 
-                <div class="project-card" onclick="showProject('nautical-charts')">
-                    <div class="project-image">🗺️</div>
-                    <div class="project-content">
-                        <h3>Digital Nautical Charts</h3>
-                        <p>Modern interpretation of nautical charts with interactive features and real-time updates.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Leaflet</span>
-                            <span class="tech-tag">PostGIS</span>
-                            <span class="tech-tag">Express</span>
-                        </div>
+        .pmp-jeopardy-container .header p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .pmp-jeopardy-container .game-board {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .pmp-jeopardy-container .categories {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 3px;
+            margin-bottom: 20px;
+        }
+
+        .pmp-jeopardy-container .category-header {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #1e3c72;
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pmp-jeopardy-container .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 3px;
+        }
+
+        .pmp-jeopardy-container .question-card {
+            background: linear-gradient(145deg, #2a5298, #1e3c72);
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            padding: 30px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .pmp-jeopardy-container .question-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255,215,0,0.4);
+            background: linear-gradient(145deg, #3a62a8, #2e4c82);
+        }
+
+        .pmp-jeopardy-container .question-card.used {
+            background: linear-gradient(145deg, #444, #333);
+            color: #666;
+            cursor: not-allowed;
+            border-color: #666;
+        }
+
+        .pmp-jeopardy-container .question-card.used:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pmp-jeopardy-container .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .pmp-jeopardy-container .modal-content {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            margin: 5% auto;
+            padding: 40px;
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .pmp-jeopardy-container .close {
+            color: #FFD700;
+            float: right;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .pmp-jeopardy-container .close:hover {
+            color: #FFA500;
+        }
+
+        .pmp-jeopardy-container .question-text {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .pmp-jeopardy-container .answer-text {
+            font-size: 1.4rem;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255,215,0,0.1);
+            border-radius: 10px;
+            border-left: 4px solid #FFD700;
+            display: none;
+        }
+
+        .pmp-jeopardy-container .show-answer-btn {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #1e3c72;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .pmp-jeopardy-container .show-answer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+        }
+
+        .pmp-jeopardy-container .score-display {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5rem;
+            background: rgba(255,215,0,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #FFD700;
+        }
+
+        .pmp-jeopardy-container .instructions {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .pmp-jeopardy-container .reset-btn {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px auto;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .pmp-jeopardy-container .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231,76,60,0.4);
+        }
+
+        @media (max-width: 1200px) {
+            .pmp-jeopardy-container .categories, 
+            .pmp-jeopardy-container .questions-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .pmp-jeopardy-container .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pmp-jeopardy-container .categories, 
+            .pmp-jeopardy-container .questions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .pmp-jeopardy-container .header h1 {
+                font-size: 1.8rem;
+            }
+            .pmp-jeopardy-container .question-card {
+                font-size: 1.2rem;
+                padding: 20px 8px;
+            }
+            .pmp-jeopardy-container .modal-content {
+                padding: 20px;
+                margin: 10% auto;
+            }
+            .pmp-jeopardy-container .question-text {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pmp-jeopardy-container" id="pmpJeopardyApp">
+        <div class="header">
+            <h1>🏆 PMP Jeopardy! 🏆</h1>
+            <p>PMBOK 7th Edition Study Game - Master Your Project Management Knowledge</p>
+        </div>
+
+        <div class="game-board">
+            <div class="instructions">
+                <h3>📚 How to Play</h3>
+                <p>Click on any dollar amount to reveal a question. Try to answer before showing the solution. Track your progress and master PMBOK 7 concepts!</p>
+            </div>
+
+            <div class="score-display">
+                <strong>Current Score: $<span id="pmpScore">0</span></strong>
+                <button class="reset-btn" onclick="PMPJeopardy.resetGame()">Reset Game</button>
+            </div>
+
+            <div class="categories">
+                <div class="category-header">Performance Domains</div>
+                <div class="category-header">12 Principles</div>
+                <div class="category-header">Project Life Cycle</div>
+                <div class="category-header">Stakeholder Management</div>
+                <div class="category-header">Risk & Quality</div>
+                <div class="category-header">Agile & Hybrid</div>
+            </div>
+
+            <div class="questions-grid" id="pmpQuestionsGrid">
+                <!-- Questions will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="pmpQuestionModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="pmpQuestionText" class="question-text"></div>
+                <button class="show-answer-btn" onclick="PMPJeopardy.showAnswer()">Show Answer</button>
+                <div id="pmpAnswerText" class="answer-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PMPJeopardy = (function() {
+            let currentScore = 0;
+            let usedQuestions = new Set();
+            let isInitialized = false;
+
+            const questions = {
+                'Performance Domains': {
+                    100: {
+                        question: "This performance domain focuses on establishing project teams and fostering a collaborative project culture.",
+                        answer: "What is the Team Performance Domain?"
+                    },
+                    200: {
+                        question: "This domain involves engaging and communicating with people who may be impacted by the project.",
+                        answer: "What is the Stakeholder Performance Domain?"
+                    },
+                    300: {
+                        question: "This domain establishes the approach for the development approach and life cycle, planning, project work, and delivery of value.",
+                        answer: "What is the Development Approach and Life Cycle Performance Domain?"
+                    },
+                    400: {
+                        question: "This performance domain addresses planning activities and adaptive responses for uncertainty and ambiguity.",
+                        answer: "What is the Planning Performance Domain?"
+                    },
+                    500: {
+                        question: "In PMBOK 7, this domain focuses on delivery of value throughout and at the end of the project.",
+                        answer: "What is the Delivery Performance Domain?"
+                    }
+                },
+                '12 Principles': {
+                    100: {
+                        question: "This principle states that project managers should be diligent, caring, and truthful stewards.",
+                        answer: "What is 'Be a diligent, respectful, and caring steward'?"
+                    },
+                    200: {
+                        question: "This principle emphasizes creating a collaborative project team environment.",
+                        answer: "What is 'Create a collaborative project team environment'?"
+                    },
+                    300: {
+                        question: "This principle involves effectively engaging with stakeholders throughout the project.",
+                        answer: "What is 'Effectively engage with stakeholders'?"
+                    },
+                    400: {
+                        question: "This principle states that project managers should focus on delivering value consistently.",
+                        answer: "What is 'Focus on value'?"
+                    },
+                    500: {
+                        question: "This principle involves recognizing, evaluating, and responding to system interactions.",
+                        answer: "What is 'Recognize, evaluate, and respond to system interactions'?"
+                    }
+                },
+                'Project Life Cycle': {
+                    100: {
+                        question: "These are the three types of project life cycles mentioned in PMBOK 7.",
+                        answer: "What are Predictive, Iterative, and Adaptive (Agile) life cycles?"
+                    },
+                    200: {
+                        question: "This life cycle approach delivers finished deliverables that the customer may be able to use immediately.",
+                        answer: "What is Incremental life cycle?"
+                    },
+                    300: {
+                        question: "In this approach, project scope is defined and approved before the start of execution.",
+                        answer: "What is Predictive (Waterfall) life cycle?"
+                    },
+                    400: {
+                        question: "This life cycle is characterized by frequent delivery of working products and regular stakeholder feedback.",
+                        answer: "What is Agile life cycle?"
+                    },
+                    500: {
+                        question: "This approach combines elements of both predictive and adaptive life cycles within the same project.",
+                        answer: "What is Hybrid life cycle?"
+                    }
+                },
+                'Stakeholder Management': {
+                    100: {
+                        question: "These are individuals or groups who may affect or be affected by the project.",
+                        answer: "Who are stakeholders?"
+                    },
+                    200: {
+                        question: "This process involves identifying people, groups, or organizations that could impact or be impacted by the project.",
+                        answer: "What is Identify Stakeholders?"
+                    },
+                    300: {
+                        question: "This tool is used to categorize stakeholders based on their level of authority and interest in the project.",
+                        answer: "What is a Power/Interest Grid?"
+                    },
+                    400: {
+                        question: "This communication method ensures stakeholders receive relevant information in a timely manner.",
+                        answer: "What is a Communications Management Plan?"
+                    },
+                    500: {
+                        question: "This technique involves understanding stakeholder concerns and expectations early to prevent future issues.",
+                        answer: "What is Stakeholder Analysis?"
+                    }
+                },
+                'Risk & Quality': {
+                    100: {
+                        question: "This is an uncertain event or condition that, if it occurs, has positive or negative effects on project objectives.",
+                        answer: "What is a project risk?"
+                    },
+                    200: {
+                        question: "This quality management process ensures that project outputs meet the specified requirements.",
+                        answer: "What is Quality Assurance?"
+                    },
+                    300: {
+                        question: "This risk response strategy involves reducing the probability or impact of a negative risk.",
+                        answer: "What is Mitigate?"
+                    },
+                    400: {
+                        question: "This tool shows the probability and impact of risks in a visual format.",
+                        answer: "What is a Risk Matrix or Probability-Impact Matrix?"
+                    },
+                    500: {
+                        question: "This quality concept states that quality is planned in, not inspected in.",
+                        answer: "What is Prevention over Inspection?"
+                    }
+                },
+                'Agile & Hybrid': {
+                    100: {
+                        question: "This is a time-boxed iteration in Scrum, typically lasting 1-4 weeks.",
+                        answer: "What is a Sprint?"
+                    },
+                    200: {
+                        question: "This Agile ceremony is held at the end of each iteration to demonstrate completed work.",
+                        answer: "What is a Sprint Review or Demo?"
+                    },
+                    300: {
+                        question: "This role in Scrum is responsible for removing impediments and facilitating team processes.",
+                        answer: "What is a Scrum Master?"
+                    },
+                    400: {
+                        question: "This approach combines traditional project management with agile methods within the same project.",
+                        answer: "What is Hybrid Project Management?"
+                    },
+                    500: {
+                        question: "This agile principle emphasizes responding to change over following a plan.",
+                        answer: "What is 'Responding to change over following a plan' from the Agile Manifesto?"
+                    }
+                }
+            };
+
+            function initializeGame() {
+                if (isInitialized) return;
+                
+                const grid = document.getElementById('pmpQuestionsGrid');
+                if (!grid) return;
+                
+                const categories = Object.keys(questions);
+                const values = [100, 200, 300, 400, 500];
+
+                grid.innerHTML = ''; // Clear existing content
+
+                values.forEach(value => {
+                    categories.forEach((category, categoryIndex) => {
+                        const card = document.createElement('div');
+                        card.className = 'question-card';
+                        card.textContent = `$${value}`;
+                        card.dataset.category = category;
+                        card.dataset.value = value;
+                        card.dataset.id = `${categoryIndex}-${value}`;
+                        card.onclick = () => openQuestion(category, value, card.dataset.id);
+                        grid.appendChild(card);
+                    });
+                });
+
+                // Setup event listeners
+                const closeBtn = document.querySelector('#pmpJeopardyApp .close');
+                const modal = document.getElementById('pmpQuestionModal');
+                
+                if (closeBtn) {
+                    closeBtn.onclick = closeModal;
+                }
+
+                window.onclick = function(event) {
+                    if (event.target === modal) {
+                        closeModal();
+                    }
+                }
+
+                isInitialized = true;
+            }
+
+            function openQuestion(category, value, cardId) {
+                if (usedQuestions.has(cardId)) return;
+
+                const question = questions[category][value];
+                const questionText = document.getElementById('pmpQuestionText');
+                const answerText = document.getElementById('pmpAnswerText');
+                const modal = document.getElementById('pmpQuestionModal');
+                const showBtn = document.querySelector('#pmpJeopardyApp .show-answer-btn');
+
+                if (questionText) questionText.textContent = question.question;
+                if (answerText) {
+                    answerText.textContent = question.answer;
+                    answerText.style.display = 'none';
+                }
+                if (showBtn) showBtn.style.display = 'block';
+                
+                // Store current question info
+                if (modal) {
+                    modal.dataset.cardId = cardId;
+                    modal.dataset.value = value;
+                    modal.style.display = 'block';
+                }
+            }
+
+            function showAnswer() {
+                const answerText = document.getElementById('pmpAnswerText');
+                const showBtn = document.querySelector('#pmpJeopardyApp .show-answer-btn');
+                const modal = document.getElementById('pmpQuestionModal');
+                
+                if (answerText) answerText.style.display = 'block';
+                if (showBtn) showBtn.style.display = 'none';
+                
+                // Mark question as used and update score
+                if (modal) {
+                    const cardId = modal.dataset.cardId;
+                    const value = parseInt(modal.dataset.value);
+                    
+                    usedQuestions.add(cardId);
+                    currentScore += value;
+                    
+                    const scoreElement = document.getElementById('pmpScore');
+                    if (scoreElement) scoreElement.textContent = currentScore;
+                    
+                    // Mark card as used
+                    const card = document.querySelector(`#pmpJeopardyApp [data-id="${cardId}"]`);
+                    if (card) {
+                        card.classList.add('used');
+                        card.onclick = null;
+                    }
+                }
+            }
+
+            function resetGame() {
+                currentScore = 0;
+                usedQuestions.clear();
+                
+                const scoreElement = document.getElementById('pmpScore');
+                if (scoreElement) scoreElement.textContent = '0';
+                
+                // Reset all cards
+                document.querySelectorAll('#pmpJeopardyApp .question-card').forEach(card => {
+                    card.classList.remove('used');
+                    card.onclick = () => openQuestion(card.dataset.category, parseInt(card.dataset.value), card.dataset.id);
+                });
+                
+                closeModal();
+            }
+
+            function closeModal() {
+                const modal = document.getElementById('pmpQuestionModal');
+                if (modal) modal.style.display = 'none';
+            }
+
+            // Auto-initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initializeGame);
+            } else {
+                initializeGame();
+            }
+
+            // Public API
+            return {
+                init: initializeGame,
+                showAnswer: showAnswer,
+                resetGame: resetGame,
+                openQuestion: openQuestion
+            };
+        })();
+    </script>
+</body>
+</html>
                     </div>
                 </div>
             </div>
