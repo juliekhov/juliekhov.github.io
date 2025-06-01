@@ -235,52 +235,226 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .about-content h2 {
-            color: #2c3e50;
-            margin-bottom: 25px;
-            font-size: 2.5rem;
+        .about-section {
+            margin-bottom: 40px;
         }
 
-        .about-content p {
+        .about-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .about-section p {
             margin-bottom: 20px;
             font-size: 1.1rem;
             line-height: 1.8;
+            color: #555;
         }
 
         .skills {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
 
         .skill-category {
             background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
         }
 
         .skill-category h4 {
             color: #2c3e50;
             margin-bottom: 15px;
+            font-size: 1.2rem;
         }
 
-        .contact-content {
+        .skill-category p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-form-section {
             background: white;
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: #fafbfc;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
             text-align: center;
         }
 
-        .contact-item {
-            margin: 20px 0;
-            font-size: 1.1rem;
+        .form-message.success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid #28a745;
+            color: #155724;
         }
 
-        .contact-item a {
+        .form-message.error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f1b0b7 100%);
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+
+        .form-message h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .form-message a {
+            color: inherit;
+            font-weight: 600;
+        }
+
+        .contact-info-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .contact-info-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .contact-method {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .contact-method:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .contact-method h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-method p {
+            color: #555;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-method small {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .contact-method a {
             color: #3498db;
             text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-method a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -301,8 +475,26 @@
                 grid-template-columns: 1fr;
             }
 
-            .project-detail, .about-content, .contact-content {
+            .project-detail, .about-content, .contact-form-section, .contact-info-section {
                 padding: 25px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .contact-form-section h2,
+            .contact-info-section h2 {
+                font-size: 1.6rem;
             }
         }
     </style>
@@ -395,28 +587,28 @@
             </div>
             
             <div class="projects-grid">
-                <div class="project-card" onclick="showProject('ocean-explorer')">
+                <div class="project-card" onclick="showProject('vehicle-emissions')">
                     <div class="project-image">🌊</div>
                     <div class="project-content">
-                        <h3>Ocean Explorer</h3>
-                        <p>An interactive web application for exploring marine ecosystems and ocean data visualization.</p>
+                        <h3>Vehicle Emissions Testing Requirements</h3>
+                        <p>An interactive web application for generating the testing types needed for vehicle emissions testing requirements.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">D3.js</span>
-                            <span class="tech-tag">WebGL</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card" onclick="showProject('maritime-tracker')">
+                <div class="project-card" onclick="showProject('PMP-jeopardy')">
                     <div class="project-image">🚢</div>
                     <div class="project-content">
-                        <h3>Maritime Tracker</h3>
-                        <p>Real-time ship tracking system with weather integration and route optimization features.</p>
+                        <h3>PMP Jeopardy Game</h3>
+                        <p>PMP Jeopardy game with question and answer components.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Socket.io</span>
+                          <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
                         </div>
                     </div>
                 </div>
@@ -477,66 +669,175 @@
 
         <!-- About Page -->
         <div id="about" class="page">
+            <div class="hero">
+                <h1>About Nautical Dream</h1>
+                <p>Where maritime heritage meets modern innovation</p>
+            </div>
+            
             <div class="about-content">
-                <h2>About Nautical Dream</h2>
-                <p>Welcome to Nautical Dream, where the vast expanse of the ocean meets the limitless possibilities of technology. Our passion lies in creating innovative solutions that bridge the gap between maritime traditions and modern digital experiences.</p>
-                
-                <p>Founded with a deep appreciation for the sea's timeless wisdom and nature's intricate patterns, we specialize in developing applications and systems that honor the nautical world while embracing cutting-edge technology. From data visualization that captures the rhythm of tides to tracking systems that follow the paths of vessels across endless waters, every project is crafted with attention to detail and genuine respect for the marine environment.</p>
-                
-                <p>Our approach combines technical expertise with creative vision, ensuring that each solution not only functions flawlessly but also tells a story. We believe that the best technologies are those that connect us more deeply with the world around us, rather than distancing us from it.</p>
+                <div class="about-section">
+                    <h2>Our Story</h2>
+                    <p>Welcome to Nautical Dream, where the vast expanse of the ocean meets the limitless possibilities of technology. Our passion lies in creating innovative solutions that bridge the gap between maritime traditions and modern digital experiences.</p>
+                    
+                    <p>Founded with a deep appreciation for the sea's timeless wisdom and nature's intricate patterns, we specialize in developing applications and systems that honor the nautical world while embracing cutting-edge technology. From data visualization that captures the rhythm of tides to tracking systems that follow the paths of vessels across endless waters, every project is crafted with attention to detail and genuine respect for the marine environment.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>Our Philosophy</h2>
+                    <p>Our approach combines technical expertise with creative vision, ensuring that each solution not only functions flawlessly but also tells a story. We believe that the best technologies are those that connect us more deeply with the world around us, rather than distancing us from it.</p>
+                    
+                    <p>Every line of code we write is inspired by the ocean's endless capacity for both power and tranquility. Like the sea itself, our solutions are designed to be both robust and elegant, capable of weathering storms while maintaining their essential beauty.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>What We Do</h2>
+                    <p>We create digital experiences that honor maritime traditions while pushing the boundaries of what's possible with modern technology. Our projects span from interactive ocean exploration tools to sophisticated tracking systems, each designed to serve both practical needs and inspire wonder about our blue planet.</p>
+                </div>
 
                 <div class="skills">
                     <div class="skill-category">
-                        <h4>Frontend Development</h4>
-                        <p>React, Vue.js, D3.js, WebGL, Three.js</p>
+                        <h4>🎨 Frontend Development</h4>
+                        <p>React, Vue.js, D3.js, WebGL, Three.js, Interactive Visualizations</p>
                     </div>
                     <div class="skill-category">
-                        <h4>Backend Development</h4>
-                        <p>Node.js, Python, Go, PostgreSQL, MongoDB</p>
+                        <h4>⚙️ Backend Development</h4>
+                        <p>Node.js, Python, Go, PostgreSQL, MongoDB, API Design</p>
                     </div>
                     <div class="skill-category">
-                        <h4>Data & Visualization</h4>
-                        <p>Pandas, Matplotlib, Leaflet, GIS Systems</p>
+                        <h4>📊 Data & Visualization</h4>
+                        <p>Pandas, Matplotlib, Leaflet, GIS Systems, Scientific Computing</p>
                     </div>
                     <div class="skill-category">
-                        <h4>Maritime Technology</h4>
-                        <p>AIS Systems, Weather APIs, IoT Sensors</p>
+                        <h4>🌊 Maritime Technology</h4>
+                        <p>AIS Systems, Weather APIs, IoT Sensors, Oceanographic Data</p>
                     </div>
+                    <div class="skill-category">
+                        <h4>☁️ Cloud & DevOps</h4>
+                        <p>AWS, Docker, Kubernetes, CI/CD, Scalable Architecture</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>🤖 AI & Machine Learning</h4>
+                        <p>TensorFlow, Computer Vision, Predictive Analytics, Deep Learning</p>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h2>Our Mission</h2>
+                    <p>To create technology that serves as a bridge between humanity and the ocean, fostering understanding, conservation, and sustainable interaction with our planet's most vital ecosystem. Through innovative digital solutions, we aim to make the mysteries of the sea accessible to all while supporting those who depend on maritime industries.</p>
                 </div>
             </div>
         </div>
 
         <!-- Contact Page -->
         <div id="contact" class="page">
-            <div class="contact-content">
-                <h2>Get In Touch</h2>
+            <div class="hero">
+                <h1>Get In Touch</h1>
                 <p>Ready to embark on a new project? Let's chart a course together.</p>
-                
-                <div class="contact-item">
-                    <strong>Email:</strong><br>
-                    <a href="mailto:hello@nauticaldream.me">hello@nauticaldream.me</a>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-form-section">
+                    <h2>Send a Message</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company/Organization</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic...</option>
+                                <option value="project-inquiry">New Project Inquiry</option>
+                                <option value="collaboration">Collaboration Opportunity</option>
+                                <option value="consultation">Technical Consultation</option>
+                                <option value="support">Support Request</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Project Budget (Optional)</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range...</option>
+                                <option value="under-5k">Under $5,000</option>
+                                <option value="5k-15k">$5,000 - $15,000</option>
+                                <option value="15k-50k">$15,000 - $50,000</option>
+                                <option value="50k-plus">$50,000+</option>
+                                <option value="discuss">Let's discuss</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project, timeline, and any specific requirements..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">Sending...</span>
+                        </button>
+                    </form>
+                    
+                    <div id="form-success" class="form-message success" style="display: none;">
+                        <h3>Message Sent Successfully! ⚓</h3>
+                        <p>Thank you for reaching out. I'll get back to you within 24 hours during business days.</p>
+                    </div>
+                    
+                    <div id="form-error" class="form-message error" style="display: none;">
+                        <h3>Message Failed to Send</h3>
+                        <p>There was an issue sending your message. Please try again or contact me directly at <a href="mailto:jkhov002@ucr.edu">jkhov002@ucr.edu</a></p>
+                    </div>
                 </div>
                 
-                <div class="contact-item">
-                    <strong>Location:</strong><br>
-                    Available for remote collaboration worldwide
-                </div>
-                
-                <div class="contact-item">
-                    <strong>Response Time:</strong><br>
-                    Within 24 hours during business days
+                <div class="contact-info-section">
+                    <h2>Other Ways to Connect</h2>
+                    
+                    <div class="contact-method">
+                        <h3>📧 Linktree</h3>
+                        <p><a href="linktr.ee/_nauticaldream">Linktree</a></p>
+                        <small>For urgent matters or direct inquiries use the contact form or message on Instagram</small>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <h3>🌍 Location</h3>
+                        <p>Available for remote collaboration worldwide</p>
+                        <small>Open to both local and international projects</small>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <h3>⏱️ Response Time</h3>
+                        <p>Within 24 hours during business days</p>
+                        <small>Monday - Friday, 9 AM - 6 PM PST</small>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <h3>💼 Project Types</h3>
+                        <p>Web applications, data visualization, maritime tech, IoT systems</p>
+                        <small>From concept to deployment</small>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Project Detail Pages -->
-        <div id="ocean-explorer" class="page project-detail">
+        <div id="vehicle-emissions" class="page project-detail">
             <button class="back-btn" onclick="showPage('projects')">← Back to Projects</button>
-            <h2>Ocean Explorer</h2>
+            <h2>Vehicle Emissions Testing Requirements</h2>
             <div class="meta">
                 <div class="meta-item">
-                    <span class="meta-label">Timeline</span>
-                    <span class="meta-value">6 months</span>
+                    <span class="meta-label">Testing Timeline</span>
+                    <span class="meta-value">3 months</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Role</span>
@@ -544,7 +845,7 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Technologies</span>
-                    <span class="meta-value">React, D3.js, WebGL</span>
+                    <span class="meta-value">HTML, CSS, JavaScript</span>
                 </div>
             </div>
             
@@ -560,21 +861,21 @@
             <p>Ocean Explorer has been used by marine biology educators and has reached over 50,000 students worldwide, helping them better understand ocean ecosystems through interactive exploration rather than traditional static materials.</p>
         </div>
 
-        <div id="maritime-tracker" class="page project-detail">
+        <div id="PMP-jeopardy" class="page project-detail">
             <button class="back-btn" onclick="showPage('projects')">← Back to Projects</button>
-            <h2>Maritime Tracker</h2>
+            <h2>PMP jeopardy</h2>
             <div class="meta">
                 <div class="meta-item">
-                    <span class="meta-label">Timeline</span>
-                    <span class="meta-value">8 months</span>
+                    <span class="meta-label">Timeline to Test</span>
+                    <span class="meta-value">3 months</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Role</span>
-                    <span class="meta-value">Backend Lead</span>
+                    <span class="meta-value">FullStack Web Developer</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Technologies</span>
-                    <span class="meta-value">Node.js, MongoDB, Socket.io</span>
+                    <span class="meta-value">HTML, CSS, JavaScript</span>
                 </div>
             </div>
             
@@ -761,6 +1062,91 @@
             } else {
                 showPage('home');
             }
+        });
+
+        // Contact form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            const successMessage = document.getElementById('form-success');
+            const errorMessage = document.getElementById('form-error');
+
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline';
+                
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                // Get form data
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData);
+
+                try {
+                    // Send email using Formspree or similar service
+                    const response = await fetch('https://formspree.io/f/xpwaddjq', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email: data.email,
+                            name: data.name,
+                            company: data.company || 'Not specified',
+                            subject: `Nautical Dream Contact: ${data.subject}`,
+                            message: `
+Name: ${data.name}
+Email: ${data.email}
+Company: ${data.company || 'Not specified'}
+Subject: ${data.subject}
+Budget: ${data.budget || 'Not specified'}
+
+Message:
+${data.message}
+
+---
+Sent from nauticaldream.me contact form
+                            `.trim(),
+                            _replyto: data.email,
+                            _subject: `New Contact from ${data.name} - ${data.subject}`
+                        })
+                    });
+
+                    if (response.ok) {
+                        // Show success message
+                        successMessage.style.display = 'block';
+                        contactForm.reset();
+                        
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    console.error('Contact form error:', error);
+                    errorMessage.style.display = 'block';
+                    errorMessage.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                } finally {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
